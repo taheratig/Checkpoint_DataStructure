@@ -1,0 +1,87 @@
+//1er solution
+
+algorithm Sum of overlapping elements 
+VAR
+tab1 : ARRAY OF INTEGER [3, 1, 7, 9];
+tab2 : ARRAY OF INTEGER [2, 4, 1, 9, 3];
+Sum ,x , z,s1,s2:= 0;
+i,j ,  : INTEGER;
+ BEGIN
+FOR  i FROM 0 TO tab1.length DO
+
+  FOR  j FROM 0 TO tab2.length DO 
+    IF (tab1[i] == tab2[j])  THEN  
+    x++;
+    END_IF
+  END_FOR
+    IF (x ==  0)  THEN
+    s1:= s1+tab1[i]
+    END_IF  
+END_FOR
+
+FOR  j FROM 0 TO tab2.length DO
+
+  FOR  i FROM 0 TO tab1.length DO 
+    IF (tab2[i] == tab1[j]) THEN 
+    z++;
+    END_IF
+  END_FOR
+    IF (z ==  0) THEN
+    s2:= s2+tab2[j]
+    END_IF 
+END_FOR
+
+Sum := s1 + s2 ; 
+write (Sum);
+END
+
+// 2éme solution
+
+algorithm Sum of overlapping elements 
+VAR
+htab1:HASH_TABLE<INTEGER,INTEGER>
+htab2:HASH_TABLE<INTEGER,INTEGER>
+tab1 : ARRAY OF INTEGER [3, 1, 7, 9];
+tab2 : ARRAY OF INTEGER [2, 4, 1, 9, 3];
+Sum ,x , z,s1,s2:= 0;
+i,j ,  : INTEGER;
+  BEGIN
+  FOR  i FROM 0 TO tab1.length DO
+
+         FOR  j FROM 0 TO tab2.length DO 
+             IF (htab1.get(tab1[i]) == htab2.get(tab2[j]) ) THEN  
+             x++;
+             END_IF
+         END_FOR
+             IF (x ==  0)  THEN
+             s1:= s1+htab1.get(tab1[i]);
+             END_IF  
+END_FOR
+
+  FOR  j FROM 0 TO tab2.length DO
+
+         FOR  i FROM 0 TO tab1.length DO 
+             IF (htab2.get(tab2[j]) == htab1.get(tab1[i]) ) THEN  
+             z++;
+             END_IF
+         END_FOR
+             IF (z ==  0)  THEN
+             s2:= s2+htab2.get(tab2[j]);
+             END_IF  
+END_FOR
+
+Sum := s1 + s2 ; 
+write (Sum);
+END
+
+
+
+
+
+
+
+
+
+
+
+
